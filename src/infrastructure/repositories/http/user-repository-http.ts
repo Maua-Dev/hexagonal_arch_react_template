@@ -3,13 +3,9 @@ import { getUserListGateway } from '../../gateways/get-user-list'
 import { UserRepositoryInterface } from '../../../domain/interfaces/user-repository-interface'
 import { getUserGateway } from '../../gateways/get-user'
 export class UserRepositoryHttp implements UserRepositoryInterface {
-  async find(id: number): Promise<User | null> {
+  async find(id: number): Promise<User> {
     try {
       const response = await getUserGateway.load(id)
-
-      if (response.statusCode === 404) {
-        return null
-      }
 
       return response.data as User
     } catch (error) {
@@ -23,10 +19,6 @@ export class UserRepositoryHttp implements UserRepositoryInterface {
     try {
       const response = await getUserListGateway.load()
 
-      if (response.statusCode === 404) {
-        return []
-      }
-
       return response.data as User[]
     } catch (error) {
       throw new Error(
@@ -39,7 +31,7 @@ export class UserRepositoryHttp implements UserRepositoryInterface {
     throw new Error('Method not implemented. ' + user)
   }
 
-  async delete(id: number): Promise<User | null> {
+  async delete(id: number): Promise<User> {
     throw new Error('Method not implemented. ' + id)
   }
 }

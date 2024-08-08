@@ -35,29 +35,43 @@ export class UserRepositoryMock implements UserRepositoryInterface {
     })
   ]
 
-  find(id: number): Promise<User | null> {
+  async find(id: number): Promise<User> {
     const user = this.users.find((user) => user.id === id)
-    return Promise.resolve(user || null)
+
+    if (!user) {
+      throw new Error('User not found')
+    }
+
+    return user
   }
 
-  list(): Promise<User[]> {
-    return Promise.resolve(this.users)
+  async list(): Promise<User[]> {
+    if (this.users.length === 0) {
+      throw new Error('No users found')
+    }
+
+    return this.users
   }
 
-  create({ id, name, email, address }: User): Promise<User> {
+  async create({ id, name, email, address }: User): Promise<User> {
+    if (this.users.find((user) => user.id === id)) {
+      throw new Error('User already exists')
+    }
+
     const user = new User(id, name, email, address)
     this.users.push(user)
-    return Promise.resolve(user)
+
+    return user
   }
 
-  delete(id: number): Promise<User | null> {
+  async delete(id: number): Promise<User> {
     const userIndex = this.users.findIndex((user) => user.id === id)
     if (userIndex === -1) {
-      return Promise.resolve(null)
+      throw new Error('User not found')
     }
 
     const user = this.users[userIndex]
     this.users.splice(userIndex, 1)
-    return Promise.resolve(user)
+    return user
   }
 }

@@ -24,10 +24,7 @@ const httpClient: HttpClient<HttpResponse<User[]>> = {
       })
 
       if (response.status === 404) {
-        return {
-          statusCode: response.status,
-          data: []
-        }
+        throw new Error('Users not found')
       }
 
       if (!response.ok) {
@@ -43,9 +40,7 @@ const httpClient: HttpClient<HttpResponse<User[]>> = {
         data: dataResponse
       }
     } catch (error) {
-      throw new Error(
-        'Something went wrong on list users: ' + (error as Error).message
-      )
+      throw new Error((error as Error).message)
     }
   }
 }
