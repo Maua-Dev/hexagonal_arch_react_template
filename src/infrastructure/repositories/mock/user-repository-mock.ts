@@ -32,6 +32,12 @@ export class UserRepositoryMock implements UserRepositoryInterface {
       suite: 'Suite 198',
       city: 'Lebsackbury',
       zipcode: '31428-2261'
+    }),
+    new User(11, 'Flavio Murata', 'flaviomurata@brownie.com', {
+      street: 'Praça Mauá 1',
+      suite: 'Suite 198',
+      city: 'Lebsackbury',
+      zipcode: '31428-2261'
     })
   ]
 
