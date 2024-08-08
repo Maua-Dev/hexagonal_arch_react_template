@@ -4,8 +4,10 @@ import { UserRepositoryFactory } from '@/infrastructure/factories/user-repositor
 export class GetUserUseCase {
   private readonly userRepository: UserRepositoryInterface
 
-  constructor() {
-    this.userRepository = UserRepositoryFactory.create()
+  constructor(
+    userRepository: UserRepositoryInterface = UserRepositoryFactory.create()
+  ) {
+    this.userRepository = userRepository
   }
   async execute(id: number) {
     return this.userRepository.find(id)
