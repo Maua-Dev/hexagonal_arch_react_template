@@ -28,6 +28,7 @@
     "rules": {
         "prettier/prettier": "warn",
         "react/react-in-jsx-scope": "off",
-        "camelcase": "warn"
+        "camelcase": "warn",
+        "@typescript-eslint/no-unused-vars": "off"
     }
 }
