@@ -1,5 +1,7 @@
 import { User } from '@/domain/entities/user'
 import { HttpClient, HttpResponse } from '../http/http'
+import { api } from '../http/api'
+import { AxiosError } from 'axios'
 
 interface GetUserList {
   load(): Promise<HttpResponse<User[]>>
@@ -11,38 +13,65 @@ class GetUserListGateway implements GetUserList {
   async load(): Promise<HttpResponse<User[]>> {
     return await this.httpClient.request({
       method: 'get',
-      url: 'https://jsonplaceholder.typicode.com/users'
+      url: '/users'
     })
   }
 }
 
-const httpClient: HttpClient<HttpResponse<User[]>> = {
+/*
+
+  HttpClient implementation using fetch
+
+  const fetchHttpClient: HttpClient<HttpResponse<User[]>> = {
+    async request(data) {
+      try {
+        const response = await fetch(environments + data.url, {
+          method: data.method
+        })
+
+        if (response.status === 404) {
+          throw new Error('Users not found')
+        }
+
+        if (!response.ok) {
+          throw new Error('Error fetching: ' + response.statusText)
+        }
+
+        const dataResponse = ((await response.json()) as User[]).map((user) =>
+          User.fromJson(user)
+        )
+
+        return {
+          statusCode: response.status,
+          data: dataResponse
+        }
+      } catch (error) {
+        throw new Error((error as Error).message)
+      }
+    }
+  }
+
+*/
+
+const axiosHttpClient: HttpClient<HttpResponse<User[]>> = {
   async request(data) {
     try {
-      const response = await fetch(data.url, {
-        method: data.method
+      const response = await api.request<User[]>({
+        method: data.method,
+        url: data.url
       })
-
-      if (response.status === 404) {
-        throw new Error('Users not found')
-      }
-
-      if (!response.ok) {
-        throw new Error('Error fetching: ' + response.statusText)
-      }
-
-      const dataResponse = ((await response.json()) as User[]).map((user) =>
-        User.fromJson(user)
-      )
 
       return {
         statusCode: response.status,
-        data: dataResponse
+        data: response.data.map((user) => User.fromJson(user))
       }
     } catch (error) {
+      if ((error as AxiosError).code === AxiosError.ERR_BAD_REQUEST) {
+        throw new Error('Users not found')
+      }
       throw new Error((error as Error).message)
     }
   }
 }
 
-export const getUserListGateway = new GetUserListGateway(httpClient)
+export const getUserListGateway = new GetUserListGateway(axiosHttpClient)
