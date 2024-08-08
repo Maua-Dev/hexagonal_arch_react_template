@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '../http/http'
 import { User } from '@/domain/entities/user'
 import { api } from '../http/api'
 import { AxiosError } from 'axios'
+import { HTTP_STATUS_CODE } from '../http/status-code'
 
 interface GetUser {
   load(id: number): Promise<HttpResponse<User>>
@@ -64,7 +65,9 @@ const axiosHttpClient: HttpClient<HttpResponse<User>> = {
         data: response.data
       }
     } catch (error) {
-      if ((error as AxiosError).code === AxiosError.ERR_BAD_REQUEST) {
+      if (
+        (error as AxiosError).response?.status === HTTP_STATUS_CODE.NOT_FOUND
+      ) {
         throw new Error('User not found')
       }
       throw new Error((error as Error).message)
