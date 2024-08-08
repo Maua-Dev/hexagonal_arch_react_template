@@ -16,7 +16,7 @@ export class UserService implements UserServiceInterface {
     return await this.getUserListUseCase.execute()
   }
 
-  async getUser(id: number): Promise<User | null> {
+  async getUser(id: number): Promise<User> {
     return await this.getUserUseCase.execute(id)
   }
 
