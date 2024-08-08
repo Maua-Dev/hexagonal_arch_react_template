@@ -1,5 +1,5 @@
 import { environments } from '@/utils/env/enviroments'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
 export const api = axios.create({
   baseURL: environments.apiUrl,
@@ -13,7 +13,7 @@ api.interceptors.response.use(
     return response
   },
   async (error) => {
-    console.log(`Intercepted error: ${error}`)
+    console.log(`Intercepted error: ${(error as AxiosError).message}`)
     return Promise.reject(error)
   }
 )
