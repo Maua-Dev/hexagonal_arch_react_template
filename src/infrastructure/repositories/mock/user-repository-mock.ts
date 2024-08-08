@@ -39,7 +39,25 @@ export class UserRepositoryMock implements UserRepositoryInterface {
     const user = this.users.find((user) => user.id === id)
     return Promise.resolve(user || null)
   }
+
   list(): Promise<User[]> {
     return Promise.resolve(this.users)
+  }
+
+  create({ id, name, email, address }: User): Promise<User> {
+    const user = new User(id, name, email, address)
+    this.users.push(user)
+    return Promise.resolve(user)
+  }
+
+  delete(id: number): Promise<User | null> {
+    const userIndex = this.users.findIndex((user) => user.id === id)
+    if (userIndex === -1) {
+      return Promise.resolve(null)
+    }
+
+    const user = this.users[userIndex]
+    this.users.splice(userIndex, 1)
+    return Promise.resolve(user)
   }
 }

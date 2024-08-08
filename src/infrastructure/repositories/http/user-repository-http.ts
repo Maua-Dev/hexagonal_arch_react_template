@@ -18,6 +18,7 @@ export class UserRepositoryHttp implements UserRepositoryInterface {
       )
     }
   }
+
   async list(): Promise<User[]> {
     try {
       const response = await getUserListGateway.load()
@@ -32,5 +33,13 @@ export class UserRepositoryHttp implements UserRepositoryInterface {
         'Something went wrong on list users: ' + (error as Error).message
       )
     }
+  }
+
+  async create(user: User): Promise<User> {
+    throw new Error('Method not implemented. ' + user)
+  }
+
+  async delete(id: number): Promise<User | null> {
+    throw new Error('Method not implemented. ' + id)
   }
 }
