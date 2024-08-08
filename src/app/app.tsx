@@ -1,22 +1,14 @@
-import { useEffect, useState } from 'react'
-import { User } from '../domain/entities/user'
-import { userService } from '../services/user-service'
+import { useEffect } from 'react'
+import { useUsers } from './hooks/use-users'
 
 export function App() {
-  const [users, setUsers] = useState<User[]>([])
+  const { fetchUsers, users } = useUsers()
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const userList = await userService.listUsers()
-        setUsers(userList)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
     fetchUsers()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   return (
     <>
       <h1 className="flex flex-col text-9xl">React</h1>

@@ -5,7 +5,7 @@ import { User } from '../domain/entities/user'
 import { UserServiceInterface } from '../domain/interfaces/user-service-interface'
 import { DeleteUserUseCase } from '@/application/usecase/delete-user-usecase'
 
-export class UserService implements UserServiceInterface {
+class UserService implements UserServiceInterface {
   private getUserListUseCase: GetUserListUseCase
   private getUserUseCase: GetUserUseCase
   private createUserUseCase: CreateUserUseCase
