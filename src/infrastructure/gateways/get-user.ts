@@ -1,5 +1,5 @@
 import { HttpClient, HttpResponse } from '../http/http'
-import { User } from '../../domain/entities/user'
+import { User } from '@/domain/entities/user'
 
 interface GetUser {
   load(id: number): Promise<HttpResponse<User>>

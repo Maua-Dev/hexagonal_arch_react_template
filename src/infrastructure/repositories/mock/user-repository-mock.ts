@@ -1,5 +1,5 @@
-import { User } from '../../../domain/entities/user'
-import { UserRepositoryInterface } from '../../../domain/interfaces/user-repository-interface'
+import { User } from '@/domain/entities/user'
+import { UserRepositoryInterface } from '@/domain/interfaces/user-repository-interface'
 
 export class UserRepositoryMock implements UserRepositoryInterface {
   private readonly users: User[] = [

@@ -1,7 +1,7 @@
-import { User } from '../../../domain/entities/user'
-import { getUserListGateway } from '../../gateways/get-user-list'
-import { UserRepositoryInterface } from '../../../domain/interfaces/user-repository-interface'
-import { getUserGateway } from '../../gateways/get-user'
+import { User } from '@/domain/entities/user'
+import { UserRepositoryInterface } from '@/domain/interfaces/user-repository-interface'
+import { getUserGateway } from '@/infrastructure/gateways/get-user'
+import { getUserListGateway } from '@/infrastructure/gateways/get-user-list'
 export class UserRepositoryHttp implements UserRepositoryInterface {
   async find(id: number): Promise<User> {
     try {

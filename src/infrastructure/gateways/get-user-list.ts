@@ -1,5 +1,5 @@
+import { User } from '@/domain/entities/user'
 import { HttpClient, HttpResponse } from '../http/http'
-import { User } from '../../domain/entities/user'
 
 interface GetUserList {
   load(): Promise<HttpResponse<User[]>>
