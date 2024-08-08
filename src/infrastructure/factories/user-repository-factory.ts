@@ -1,10 +1,11 @@
 import { UserRepositoryInterface } from '../../domain/interfaces/user-repository-interface'
+import { environments } from '../../utils/env/enviroments'
 import { UserRepositoryHttp } from '../repositories/http/user-repository-http'
 import { UserRepositoryMock } from '../repositories/mock/user-repository-mock'
 
 export class UserRepositoryFactory {
   static create(): UserRepositoryInterface {
-    const stage = import.meta.env.VITE_STAGE || 'dev'
+    const { stage } = environments
 
     switch (stage) {
       case 'test':
