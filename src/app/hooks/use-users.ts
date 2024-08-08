@@ -16,9 +16,18 @@ export const useUsers = () => {
       const userList = await userService.listUsers()
       setUsers(userList)
     } catch (error) {
-      console.error(error)
+      console.log((error as Error).message)
     }
   }
 
-  return { user, users, setUser, setUsers, fetchUsers }
+  const deleteUser = async (id: number) => {
+    try {
+      await userService.deleteUser(id)
+      setUsers(users.filter((user) => user.id !== id))
+    } catch (error) {
+      console.log((error as Error).message)
+    }
+  }
+
+  return { user, users, setUser, setUsers, fetchUsers, deleteUser }
 }
