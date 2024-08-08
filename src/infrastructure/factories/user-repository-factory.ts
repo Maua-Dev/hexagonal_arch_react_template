@@ -12,7 +12,7 @@ export class UserRepositoryFactory {
         return new UserRepositoryMock()
       case 'prod':
         return new UserRepositoryHttp()
-      case 'hml':
+      case 'homolog':
         return new UserRepositoryHttp()
       case 'dev':
         return new UserRepositoryHttp()

@@ -3,7 +3,7 @@ type ObjectValues<T> = T[keyof T]
 export const STAGE = {
   TEST: 'test',
   PROD: 'prod',
-  HML: 'hml',
+  HOMOLOG: 'homolog',
   DEV: 'dev'
 }
 
