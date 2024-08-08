@@ -1,14 +1,13 @@
-import { User } from '@/domain/entities/user'
 import { UserRepositoryInterface } from '@/domain/interfaces/user-repository-interface'
 import { UserRepositoryFactory } from '@/infrastructure/factories/user-repository-factory'
 
-export class CreateUserUseCase {
+export class DeleteUserUseCase {
   private readonly userRepository: UserRepositoryInterface
 
   constructor() {
     this.userRepository = UserRepositoryFactory.create()
   }
-  async execute(user: User) {
-    return this.userRepository.create(user)
+  async execute(id: number) {
+    return this.userRepository.delete(id)
   }
 }
