@@ -11,16 +11,20 @@ This is a simple example of how to implement the hexagonal architecture in a Rea
 This repository provides a template for implementing Hexagonal Architecture (also known as Ports and Adapters Architecture) in a React project using TypeScript. The main goal of this architecture is to create a maintainable, testable, and scalable codebase by decoupling the core business logic from external concerns such as UI frameworks, databases, and APIs.
 
 ## Table of Contents
+- [Hexagonal Architecture for React](#hexagonal-architecture-for-react)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Running the Project](#running-the-project)
+  - [Folder Structure](#folder-structure)
+  - [Core Concepts](#core-concepts)
+    - [Domain](#domain)
+    - [Use Cases](#use-cases)
+    - [Adapters](#adapters)
+  - [Testing](#testing)
+  - [Contributing](#contributing)
+  - [Authors](#authors)
 
-1. [Getting Started](#getting-started)
-2. [Folder Structure](#folder-structure)
-3. [Core Concepts](#core-concepts)
-4. [Use Cases](#use-cases)
-5. [Adapters](#adapters)
-6. [Running the Project](#running-the-project)
-7. [Testing](#testing)
-8. [Contributing](#contributing)
-9. [License](#license)
 
 ## Getting Started
 
@@ -31,6 +35,15 @@ git clone https://github.com/Maua-Dev/hexagonal_arch_react_template.git
 cd hexagonal_arch_react_template
 npm install
 ```
+## Running the Project
+
+To run the project locally, use the following command:
+
+```bash
+npm run dev
+```
+
+This will start the development server, and you can view the application in your browser at `http://localhost:3000`.
 
 ## Folder Structure
 
@@ -66,19 +79,11 @@ The **domain** layer is the heart of the application. It includes entities and v
 
 ### Adapters
 
-Adapters are used to connect the core logic to the external world, such as UI components, APIs, databases, or any other external systems. In this template, we have two primary adapters:
+Adapters are used to connect the core logic to the external world, such as UI components, APIs, databases, or any other external systems. In this template, we have three primary adapters:
 
 - **HTTP Adapter**: Handles communication with external APIs.
-
-## Running the Project
-
-To run the project locally, use the following command:
-
-```bash
-npm run dev
-```
-
-This will start the development server, and you can view the application in your browser at `http://localhost:3000`.
+- **Repositories Adapter**: Manages the persistence of domain entities.
+- **UI Adapter**: Handles communication with the user interface.
 
 ## Testing
 
@@ -89,3 +94,11 @@ To run the tests:
 ```bash
 npm run test
 ```
+
+## Contributing
+
+If you have any suggestions, improvements, or issues, feel free to open an issue or create a pull request.
+
+## Authors
+
+- [Enzo Sakamoto](https://www.linkedin.com/in/enzosakamoto/)
