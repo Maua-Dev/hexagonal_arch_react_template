@@ -1,4 +1,4 @@
-import { STAGE } from '../stage'
+import { STAGE } from '../enums/stage'
 
 type Environments = {
   apiUrl: string
