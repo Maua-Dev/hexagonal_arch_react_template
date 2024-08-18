@@ -2,7 +2,7 @@ import { UserRepositoryInterface } from '@/domain/interfaces/user-repository-int
 import { environments } from '@/utils/env/enviroments'
 import { UserRepositoryMock } from '../repositories/mock/user-repository-mock'
 import { UserRepositoryHttp } from '../repositories/http/user-repository-http'
-import { STAGE } from '@/utils/stage'
+import { STAGE } from '@/utils/enums/stage'
 
 export class UserRepositoryFactory {
   static create(stage: STAGE = environments.stage): UserRepositoryInterface {
