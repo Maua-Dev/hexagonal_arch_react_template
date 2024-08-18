@@ -28,10 +28,10 @@ export class UserRepositoryHttp implements UserRepositoryInterface {
   }
 
   async create(user: User): Promise<User> {
-    throw new Error('Method not implemented.')
+    throw new Error('Method not implemented. ' + user)
   }
 
   async delete(id: number): Promise<User> {
-    throw new Error('Method not implemented.')
+    throw new Error('Method not implemented.' + id)
   }
 }
