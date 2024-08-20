@@ -5,6 +5,6 @@ export const STAGE = {
   PROD: 'prod',
   HOMOLOG: 'homolog',
   DEV: 'dev'
-}
+} as const
 
 export type STAGE = ObjectValues<typeof STAGE>
