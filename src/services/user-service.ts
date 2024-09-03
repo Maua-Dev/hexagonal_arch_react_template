@@ -5,17 +5,22 @@ import { User } from '../domain/entities/user'
 import { UserServiceInterface } from '../domain/interfaces/user-service-interface'
 import { DeleteUserUseCase } from '@/application/usecase/delete-user-usecase'
 
-class UserService implements UserServiceInterface {
+export class UserService implements UserServiceInterface {
   private getUserListUseCase: GetUserListUseCase
   private getUserUseCase: GetUserUseCase
   private createUserUseCase: CreateUserUseCase
   private deleteUserUseCase: DeleteUserUseCase
 
-  constructor() {
-    this.getUserListUseCase = new GetUserListUseCase()
-    this.getUserUseCase = new GetUserUseCase()
-    this.createUserUseCase = new CreateUserUseCase()
-    this.deleteUserUseCase = new DeleteUserUseCase()
+  constructor(
+    getUserListUseCase: GetUserListUseCase = new GetUserListUseCase(),
+    getUserUseCase: GetUserUseCase = new GetUserUseCase(),
+    createUserUseCase: CreateUserUseCase = new CreateUserUseCase(),
+    deleteUserUseCase: DeleteUserUseCase = new DeleteUserUseCase()
+  ) {
+    this.getUserListUseCase = getUserListUseCase
+    this.getUserUseCase = getUserUseCase
+    this.createUserUseCase = createUserUseCase
+    this.deleteUserUseCase = deleteUserUseCase
   }
 
   async listUsers(): Promise<User[]> {
