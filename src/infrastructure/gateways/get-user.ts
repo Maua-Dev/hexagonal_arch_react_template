@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '../http/http'
 import { User } from '@/domain/entities/user'
 import { api } from '../http/api'
 import { AxiosError } from 'axios'
-import { HTTP_STATUS_CODE } from '../http/status-code'
+import { HTTP_STATUS_CODE } from '@/utils/enums/status-code'
 
 interface GetUser {
   load(id: number): Promise<HttpResponse<User>>

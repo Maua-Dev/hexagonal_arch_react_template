@@ -12,7 +12,7 @@ describe('get user list service', () => {
     const userRepository = new UserRepositoryMock()
     const getUserListUseCase = new GetUserListUseCase(userRepository)
     const userService = new UserService(getUserListUseCase)
-    const users = await userService.listUsers()
+    const users = await userService.getAllUsers()
 
     expect(users).toHaveLength(6)
   })

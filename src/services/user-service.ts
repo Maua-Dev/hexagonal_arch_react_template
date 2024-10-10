@@ -23,7 +23,7 @@ export class UserService implements UserServiceInterface {
     this.deleteUserUseCase = deleteUserUseCase
   }
 
-  async listUsers(): Promise<User[]> {
+  async getAllUsers(): Promise<User[]> {
     return await this.getUserListUseCase.execute()
   }
 

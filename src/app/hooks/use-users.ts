@@ -13,7 +13,7 @@ export const useUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const userList = await userService.listUsers()
+      const userList = await userService.getAllUsers()
       setUsers(userList)
     } catch (error) {
       console.log((error as Error).message)
