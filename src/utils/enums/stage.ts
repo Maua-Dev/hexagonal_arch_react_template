@@ -1,4 +1,4 @@
-type ObjectValues<T> = T[keyof T]
+import { ObjectValues } from './object-values'
 
 export const STAGE = {
   TEST: 'test',
